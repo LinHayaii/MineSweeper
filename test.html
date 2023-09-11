@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Minesweeper</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="test.css">
+    <script src="test.js"></script>
+    <script>
+        window.onload = function () {
+            draw3DBoard();
+        }
+        document.addEventListener("DOMContentLoaded",function () {
+            const canvas = document.getElementById("minesweeperCanvas");
+            canvas.addEventListener("mousedown",handleMouseDown);
+        });
+    </script>
+</head>
+<body onload="initial();updateTime();">
+<div class="centered-div">
+    <a href="javascript:chooseLevel(1);becomeY()">基础</a>
+    &nbsp;&nbsp;
+    <a href="javascript:chooseLevel(2);becomeY()">中级</a>
+    &nbsp;&nbsp;
+    <a href="javascript:chooseLevel(3);becomeY()">专家</a>
+    &nbsp;&nbsp;
+    <a href="javascript:">自定义</a>
+</div>
+<div class="div-container">
+    <div class="div-item">
+        Time:&nbsp<span id="time">000</span>
+    </div>
+    <div class="div-item">
+        <a id="face" href="javascript:becomeY()">σ( ᑒ )</a>
+    </div>
+    <div class="div-item">
+        Mine:<span id="mine"></span>
+    </div>
+</div>
+
+<div class="centered-div">
+    <canvas id="minesweeperCanvas"></canvas>
+</div>
+
+</body>
+</html>

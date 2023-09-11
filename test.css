@@ -1,0 +1,37 @@
+.centered-div {
+    margin: 0 auto; /* 水平居中 */
+    display: flex;
+    justify-content: center; /* 水平居中 */
+    align-items: center; /* 垂直居中 */
+    /* 这里可以设置其他div样式，如背景颜色等 */
+}
+.div-container {
+    margin: 0 auto; /* 水平居中 */
+    display: flex;
+    justify-content: center; /* 水平居中 */
+    align-items: center; /* 垂直居中 */
+    /* 这里可以设置其他div样式，如背景颜色等 */
+    overflow: hidden; /* 清除浮动元素溢出问题 */
+}
+
+.div-item {
+    float: left; /* 将 div 元素向左浮动 */
+    margin-right: 10px; /* 可以设置右侧的间距 */
+}
+#time {
+    text-align: left;
+}
+#face {
+    text-align: center;
+    margin: 50px;
+    padding: 50px;
+}
+#rb {
+    text-align: right;
+}
+a {
+    font-weight: bold;
+    font-size: 18px;
+    margin: 13px;
+    padding: 13px;
+}
