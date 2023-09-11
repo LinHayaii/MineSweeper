@@ -5,12 +5,14 @@ class Unit {//一个格子
     }
 }
 // minesweeper.js
-let numRows = 10;
-let numCols = 10;
 const cellSize = 30;
 const shadowSize = cellSize / 10; // 阴影大小
-let boomNum = 10;//雷的数量
 const t = shadowSize / 2; // 阴影大小的一半
+const imageWidth = 15;
+const imageHeight = 25;
+let numRows = 10;
+let numCols = 10;
+let boomNum = 10;//雷的数量
 let board; //棋盘
 let clicked;//点击棋盘:0表示未点击，1表示已点击，2表示已插旗
 let level = 1;//难度
@@ -31,8 +33,8 @@ function initial() {//初始化棋盘
     draw3DBoard();
     initialChessBoard();
     randomBoom();
-    let link = document.getElementById("mine");
-    link.innerHTML = String(boomNum).padStart(3, "0");
+    showMine();
+
 }
 function dependLevel() {//根据难度确定棋盘大小
     switch (level) {
@@ -384,39 +386,54 @@ function drawBoom(row, col, x) {//绘制爆炸
 function isWin() {//判断是否胜利
     return restCell === boomNum;
 }
-function becomeY() {
+function becomeY() {//恢复初始画面
     let link = document.getElementById("face");
     link.textContent = "σ( ᑒ )";
     chooseLevel(level);
     time = 0;
-    let cd = document.getElementById("time");
-    cd.innerHTML = "000";
+    showTime();
 }
-function becomeW() {
+function becomeW() {//变成得意脸
     let link = document.getElementById("face");
     link.textContent = "ᕕ( ᐛ )ᕗ";
 }
-function becomeF() {
+function becomeF() {//变成失败脸
     let link = document.getElementById("face");
     link.textContent = "σ`∀´)";
 }
-function updateTime() {
-    setInterval(function() {
+function updateTime() {//更新时间
+    setInterval(function(){
         if(gameStatus === 1) {
-            let link = document.getElementById("time");
             time++;
-            link.textContent = String(time).padStart(3, "0");
+            showTime();
         }
     }, 1000);
-
 }
-function upMine(){
+function showTime() {//显示时间
+    let timer = new Array(3);
+    timer[0] = time / 100 % 10;
+    timer[1] = time / 10 % 10;
+    timer[2] = time % 10;
+    for(let x = 0; x <= 2; x++) {
+        let img = document.getElementById(`time${x}`);
+        img.src = `image/${Math.floor(timer[x])}.png`;
+    }
+}
+function upMine(){//增加剩余雷数
     restBoom++;
-    let link = document.getElementById("mine");
-    link.textContent = String(restBoom).padStart(3, "0");
+    showMine();
 }
-function downMine() {
+function downMine() {//减少剩余雷数
     restBoom--;
-    let link = document.getElementById("mine");
-    link.textContent = String(restBoom).padStart(3, "0");
+    showMine();
+}
+function showMine() {
+    let miner = new Array(3);
+    miner[0] = restBoom / 100 % 10;
+    miner[1] = restBoom / 10 % 10;
+    miner[2] = restBoom % 10;
+    for(let x = 0; x <= 2; x++) {
+        let img = document.getElementById(`mine${x}`);
+        img.src = `image/${Math.floor(miner[x])}.png`;
+    }
 }
