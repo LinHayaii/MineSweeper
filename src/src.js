@@ -150,12 +150,12 @@ function handleMouseDown(event) {//处理鼠标点击事件
                     for(let i = 1;i <= numRows;i++){
                         for(let j = 1;j <= numCols;j++){
                             if(board[i][j].num === 9 && clicked[i][j] === 0){
-                                drawBoom(i,j,1);
+                                drawBoom(i,j,"");
                             }
                         }
                     }
                     //绘制点击的雷
-                    drawBoom(clickedRow,clickedCol,2);
+                    drawBoom(clickedRow,clickedCol,"_boom");
                     becomeF();
                 } else {
                     if(numberToDisplay !== 0) {//数字
@@ -316,7 +316,7 @@ function drawFlag(x, y) {//绘制旗帜
     const canvas = document.getElementById("minesweeperCanvas");
     const ctx = canvas.getContext("2d");
     const flagImage = new Image();
-    flagImage.src = "flag.png";
+    flagImage.src = "image/flag.png";
     flagImage.onload = function () {
         ctx.drawImage(flagImage, x+shadowSize, y+shadowSize, cellSize-shadowSize*2, cellSize-shadowSize*2);
     }
@@ -376,7 +376,7 @@ function drawBoom(row, col, x) {//绘制爆炸
     const canvas = document.getElementById("minesweeperCanvas");
     const ctx = canvas.getContext("2d");
     const boomImage = new Image();
-    boomImage.src = `boom${x}.png`;
+    boomImage.src = `image/mine${x}.png`;
     boomImage.onload = function () {
         ctx.drawImage(boomImage, col*cellSize, row*cellSize, cellSize, cellSize);
     }
